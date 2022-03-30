@@ -40,6 +40,25 @@ class AlbumFragment : Fragment() {
             Toast.makeText(activity, "돌림노래(Feat. Dean)", Toast.LENGTH_SHORT).show()
         }
 
+        binding.songMixoffTg.setOnClickListener {
+            setMixStatus(false)
+        }
+
+        binding.songMixonTg.setOnClickListener {
+            setMixStatus(true)
+        }
+
         return binding.root
+    }
+    fun setMixStatus(isMix : Boolean) {
+        if(isMix) {
+            binding.songMixoffTg.visibility = View.VISIBLE
+            binding.songMixonTg.visibility = View.GONE
+        }
+        else {
+            binding.songMixoffTg.visibility = View.GONE
+            binding.songMixonTg.visibility = View.VISIBLE
+
+        }
     }
 }
