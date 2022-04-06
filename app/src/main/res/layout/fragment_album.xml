@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -121,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="수록곡"
-            android:textColor="#3f3fff"
+            android:textColor="@color/purple_700"
             android:textStyle="bold" />
 
         <TextView
@@ -191,7 +192,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/white"
                 android:orientation="horizontal"
                 android:paddingStart="20dp"
                 android:paddingTop="5dp"
@@ -304,13 +304,13 @@
                         android:id="@+id/song_list_title_01_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="#3f3fff"
-                        android:paddingStart="5dp"
-                        android:paddingEnd="5dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/textview_background_select_color_radius"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
                         android:text="TITLE"
                         android:textColor="@color/white"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:layout_constraintBottom_toBottomOf="@+id/song_list_order_01_tv"
                         app:layout_constraintStart_toEndOf="@+id/song_list_order_01_tv"
                         app:layout_constraintTop_toTopOf="@+id/song_list_order_01_tv" />
@@ -453,12 +453,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:background="#3f3fff"
+                        android:background="@drawable/textview_background_select_color_radius"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:text="TITLE"
                         android:textColor="@color/white"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:layout_constraintBottom_toBottomOf="@+id/song_list_order_03_tv"
                         app:layout_constraintStart_toEndOf="@+id/song_list_order_03_tv"
                         app:layout_constraintTop_toTopOf="@+id/song_list_order_03_tv" />
