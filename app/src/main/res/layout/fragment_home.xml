@@ -7,19 +7,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/home_pannel_background_iv"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/home_panner_background_vp"
             android:layout_width="match_parent"
             android:layout_height="430dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_first_album_default"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints" />
+<!--        <ImageView-->
+<!--            android:id="@+id/home_pannel_background_iv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="430dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:src="@drawable/img_first_album_default"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.0"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
         <ImageView
             android:id="@+id/home_pannel_btn_nugu_iv"
@@ -93,7 +102,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginBottom="30dp"
             android:src="@drawable/img_album_exp"
-            app:layout_constraintBottom_toBottomOf="@id/home_pannel_background_iv"
+            app:layout_constraintBottom_toBottomOf="@id/home_panner_background_vp"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -131,7 +140,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_pannel_background_iv" />
+            app:layout_constraintTop_toBottomOf="@id/home_panner_background_vp" />
 
         <ImageView
             android:id="@+id/home_today_release_more_iv"
