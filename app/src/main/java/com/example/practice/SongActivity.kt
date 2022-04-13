@@ -8,13 +8,19 @@ import com.example.practice.databinding.ActivitySongBinding
 
 class SongActivity : AppCompatActivity(){
     lateinit var binding : ActivitySongBinding
+    lateinit var song : Song
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySongBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initSong()
+        setPlayer(song)
+
         binding.songDownIb.setOnClickListener{
             finish()
         }
+
         binding.songMiniplayerIv.setOnClickListener{
             setPlayerStatus(false)
         }
@@ -27,10 +33,28 @@ class SongActivity : AppCompatActivity(){
         binding.songRepeatOneIv.setOnClickListener {
             setSongRepeat(true)
         }
+
+    }
+
+    private fun initSong() {
         if(intent.hasExtra("title") && intent.hasExtra("singer")) {
-            binding.songMusicTitleTv.text = intent.getStringExtra("title")
-            binding.songSingerNameTv.text = intent.getStringExtra("singer")
-        }
+            song = Song(
+                intent.getStringExtra("title")!!,
+                intent.getStringExtra("singer")!!,
+                intent.getIntExtra("second", 0),
+                intent.getIntExtra("playTime", 0),
+                intent.getBooleanExtra("isPlaying", false)
+                )
+            }
+    }
+
+    private fun setPlayer(song: Song) {
+        binding.songMusicTitleTv.text = intent.getStringExtra("title")!!
+        binding.songSingerNameTv.text = intent.getStringExtra("singer")!!
+        binding.songStartTimeTv.text = String.format("%02d:%02d", song.second / 60, song.second % 60)
+        binding.songEndTimeTv.text = String.format("%02d:%02d", song.playTime / 60, song.playTime % 60)
+        binding.songProgressSb.progress = (song.second * 1000 / song.playTime)
+        setPlayerStatus(song.isPlaying)
     }
 
     fun setPlayerStatus(isPlaying : Boolean) {
