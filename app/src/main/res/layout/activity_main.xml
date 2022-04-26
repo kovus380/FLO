@@ -14,15 +14,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_player_cl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F9F9F9"
-        android:paddingVertical="5dp"
         app:layout_constraintBottom_toTopOf="@id/main_bnv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+
+
+        <SeekBar
+            android:id="@+id/main_progress_sb"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@null"
+            android:backgroundTint="@color/black"
+            android:max="100000"
+            android:layout_marginTop="-3dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            app:layout_goneMarginTop="0dp"
+            android:progress="0"
+            android:progressTint="@color/song_player"
+            android:thumb="@color/transparent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/main_player_cl" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -32,6 +55,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
 
             <TextView
                 android:id="@+id/main_miniplayer_title_tv"
@@ -54,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginVertical="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
