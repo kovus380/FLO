@@ -171,9 +171,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        setMiniPlayerStatus(false)
+    }
+
     override fun onDestroy(){
         super.onDestroy()
         timer.interrupt()
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
 }
