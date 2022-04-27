@@ -1,6 +1,7 @@
 package com.example.practice
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import com.google.gson.Gson
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+    private var mediaPlayer: MediaPlayer? = null
 
     private var song: Song = Song()
     private var gson: Gson = Gson()
@@ -27,11 +29,11 @@ class MainActivity : AppCompatActivity() {
         initBottomNavigation()
 
         binding.mainMiniplayerBtn.setOnClickListener {
-            setMiniPlayerStatus(false)
+            setMiniPlayerStatus(true)
         }
 
         binding.mainPauseBtn.setOnClickListener {
-            setMiniPlayerStatus(true)
+            setMiniPlayerStatus(false)
         }
 
         binding.mainPlayerCl.setOnClickListener {
@@ -49,16 +51,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("Song", song.title + song.singer)
     }
 
-    fun setMiniPlayerStatus(isPlaying: Boolean) {
-        if(isPlaying){
-            binding.mainMiniplayerBtn.visibility = View.VISIBLE
-            binding.mainPauseBtn.visibility = View.GONE
-        }
-        else {
-            binding.mainMiniplayerBtn.visibility = View.GONE
-            binding.mainPauseBtn.visibility = View.VISIBLE
-        }
-    }
+
     private fun initBottomNavigation(){
 
         supportFragmentManager.beginTransaction()
@@ -102,6 +95,24 @@ class MainActivity : AppCompatActivity() {
         binding.mainMiniplayerTitleTv.text = song.title
         binding.mainMiniplayerSingerTv.text = song.singer
         binding.mainProgressSb.progress = (song.second*100000)/song.playTime
+        val music = resources.getIdentifier(song.music, "raw", this.packageName)
+        mediaPlayer = MediaPlayer.create(this, music)
+        setMiniPlayerStatus(song.isPlaying)
+    }
+
+    fun setMiniPlayerStatus(isPlaying: Boolean) {
+        if(isPlaying){
+            binding.mainMiniplayerBtn.visibility = View.GONE
+            binding.mainPauseBtn.visibility = View.VISIBLE
+            mediaPlayer?.start()
+        }
+        else {
+            binding.mainMiniplayerBtn.visibility = View.VISIBLE
+            binding.mainPauseBtn.visibility = View.GONE
+            if(mediaPlayer?.isPlaying == true){
+                mediaPlayer?.pause()
+            }
+        }
     }
 
     override fun onStart() {
