@@ -253,17 +253,16 @@
     </LinearLayout>
 
 
-
-
     <ImageView
         android:id="@+id/song_repeat_iv"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="28dp"
         android:src="@drawable/nugu_btn_repeat_inactive"
         app:layout_constraintBottom_toBottomOf="@+id/song_player_layout"
         app:layout_constraintEnd_toStartOf="@+id/song_player_layout"
-        app:layout_constraintTop_toTopOf="@+id/song_player_layout" />
+        app:layout_constraintTop_toTopOf="@+id/song_player_layout"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/song_repeat_one_iv"
@@ -285,6 +284,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/song_player_layout"
         app:layout_constraintStart_toEndOf="@+id/song_player_layout"
         app:layout_constraintTop_toTopOf="@+id/song_player_layout" />
+
+    <ImageView
+        android:id="@+id/song_order_iv"
+        android:layout_width="58dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/btn_playlist_random_on"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/song_player_layout"
+        app:layout_constraintStart_toEndOf="@+id/song_player_layout"
+        app:layout_constraintTop_toTopOf="@+id/song_player_layout"
+        />
 
 
     <ImageView

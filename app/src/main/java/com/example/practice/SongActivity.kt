@@ -38,10 +38,16 @@ class SongActivity : AppCompatActivity() {
             setPlayerStatus(false)
         }
         binding.songRepeatIv.setOnClickListener {
-            setSongRepeat(false)
+            setRepeatStatus(false)
         }
         binding.songRepeatOneIv.setOnClickListener {
-            setSongRepeat(true)
+            setRepeatStatus(true)
+        }
+        binding.songRandomIv.setOnClickListener {
+            setRandomStatus(false)
+        }
+        binding.songOrderIv.setOnClickListener {
+            setRandomStatus(true)
         }
 
     }
@@ -91,13 +97,24 @@ class SongActivity : AppCompatActivity() {
         }
     }
 
-    fun setSongRepeat(isRepeat: Boolean) {
+    fun setRepeatStatus(isRepeat: Boolean) {
         if (isRepeat) {
             binding.songRepeatOneIv.visibility = View.GONE
             binding.songRepeatIv.visibility = View.VISIBLE
         } else {
             binding.songRepeatOneIv.visibility = View.VISIBLE
             binding.songRepeatIv.visibility = View.GONE
+        }
+    }
+
+    fun setRandomStatus(isRandom: Boolean) {
+        if(isRandom) {
+            binding.songRandomIv.visibility = View.VISIBLE
+            binding.songOrderIv.visibility = View.GONE
+        }
+        else {
+            binding.songRandomIv.visibility = View.GONE
+            binding.songOrderIv.visibility = View.VISIBLE
         }
     }
 
