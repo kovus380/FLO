@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.practice.databinding.ActivityMainBinding
 import com.example.prcatice.HomeFragment
 import com.google.gson.Gson
@@ -25,6 +26,14 @@ class MainActivity : AppCompatActivity() {
 
         initBottomNavigation()
 
+        binding.mainMiniplayerBtn.setOnClickListener {
+            setMiniPlayerStatus(false)
+        }
+
+        binding.mainPauseBtn.setOnClickListener {
+            setMiniPlayerStatus(true)
+        }
+
         binding.mainPlayerCl.setOnClickListener {
             //startActivity(Intent(this, SongActivity::class.java))
             var intent = Intent(this, SongActivity::class.java)
@@ -40,6 +49,16 @@ class MainActivity : AppCompatActivity() {
         Log.d("Song", song.title + song.singer)
     }
 
+    fun setMiniPlayerStatus(isPlaying: Boolean) {
+        if(isPlaying){
+            binding.mainMiniplayerBtn.visibility = View.VISIBLE
+            binding.mainPauseBtn.visibility = View.GONE
+        }
+        else {
+            binding.mainMiniplayerBtn.visibility = View.GONE
+            binding.mainPauseBtn.visibility = View.VISIBLE
+        }
+    }
     private fun initBottomNavigation(){
 
         supportFragmentManager.beginTransaction()
