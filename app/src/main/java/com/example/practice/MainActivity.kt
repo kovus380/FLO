@@ -9,11 +9,13 @@ import android.view.View
 import com.example.practice.databinding.ActivityMainBinding
 import com.example.prcatice.HomeFragment
 import com.google.gson.Gson
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+    lateinit var timer: Timer
     private var mediaPlayer: MediaPlayer? = null
 
     private var song: Song = Song()
@@ -101,6 +103,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setMiniPlayerStatus(isPlaying: Boolean) {
+        song.isPlaying = isPlaying
+        timer.isPlaying = isPlaying
+
         if(isPlaying){
             binding.mainMiniplayerBtn.visibility = View.GONE
             binding.mainPauseBtn.visibility = View.VISIBLE
@@ -115,6 +120,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun startTimer(){
+        timer = Timer(song.playTime, song.isPlaying)
+        timer.start()
+    }
+
+
+    inner class Timer(private val playTime: Int, var isPlaying: Boolean = true):Thread(){
+        private var second: Int = 0
+        private var mills: Float = 0f
+        override fun run() {
+            super.run()
+            try{
+                while(true){
+                    if (second >= playTime){
+                        break
+                    }
+                    if (isPlaying){
+                        sleep(50)
+                        mills += 50
+
+                        runOnUiThread {
+                            binding.mainProgressSb.progress = ((mills/playTime) * 100).toInt()
+                        }
+                        if(mills % 1000 == 0f){
+                            second++
+                        }
+                    }
+                }
+            }catch (e:InterruptedException){
+                Log.d("Song", "MiniPlayer-쓰레드가 죽었습니다. ${e.message}")
+            }
+
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
@@ -125,8 +165,15 @@ class MainActivity : AppCompatActivity() {
         } else {
             gson.fromJson(songJson, Song::class.java)
         }
+        startTimer()
 
         setMiniPlayer(song)
 
     }
+
+    override fun onDestroy(){
+        super.onDestroy()
+        timer.interrupt()
+    }
+
 }
