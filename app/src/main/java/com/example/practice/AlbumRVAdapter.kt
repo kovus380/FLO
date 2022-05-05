@@ -35,8 +35,8 @@ class AlbumRVAdapter(private val albumList: ArrayList<Album>): RecyclerView.Adap
     override fun onBindViewHolder(holder: AlbumRVAdapter.ViewHolder, position: Int) {
         holder.bind(albumList[position])
 //        onBindViewHolder가 포지션 값을 가지고 있기 때문에, 클릭 이벤트는 onBindViewHolder 에서 작성하는 것이 좋음
-//        holder.itemView.setOnClickListener{ mItemClickListener.onItemClick(albumList[position])}
-        holder.binding.itemAlbumTitleTv.setOnClickListener { mItemClickListener.onRemoveAlbum(position) }
+        holder.itemView.setOnClickListener{ mItemClickListener.onItemClick(albumList[position])}
+//        holder.binding.itemAlbumTitleTv.setOnClickListener { mItemClickListener.onRemoveAlbum(position) }
 
     }
 
