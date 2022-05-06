@@ -23,4 +23,7 @@
         <item name="android:windowBackground"> @drawable/splash </item>
         <item name="android:statusBarColor">@color/transparent</item>
     </style>
+    <style name="tab_text" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">180sp</item>
+    </style>
 </resources>
