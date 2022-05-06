@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
         val songJson = sharedPreferences.getString("songData", null)
 
         song = if(songJson == null) {
-            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac")
+            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac", R.drawable.img_album_exp)
         } else {
             gson.fromJson(songJson, Song::class.java)
         }
