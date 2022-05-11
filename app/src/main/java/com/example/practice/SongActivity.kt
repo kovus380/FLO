@@ -191,7 +191,7 @@ class SongActivity : AppCompatActivity() {
         songs[nowPos].isLike = !isLike
 //        db의 값도 업데이트
         songDB.songDao().updateIsLikeById(!isLike, songs[nowPos].id)
-        if(isLike){
+        if(!isLike){
             binding.songLikeIv.setImageResource(R.drawable.ic_my_like_on)
         } else{
             binding.songLikeIv.setImageResource(R.drawable.ic_my_like_off)
