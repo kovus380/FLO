@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.mainPlayerCl.setOnClickListener {
             val editor = getSharedPreferences("song", MODE_PRIVATE).edit()
-            editor.putInt("songId", song.id)
+            editor.putInt("songId", songs[nowPos].id)
             editor.apply()
 
             val intent = Intent(this, SongActivity::class.java)
