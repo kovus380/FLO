@@ -1,5 +1,6 @@
 package com.example.practice
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -48,6 +49,11 @@ class LockerFragment : Fragment() {
             tab.text = information[position]
         }.attach()
         // Inflate the layout for this fragment
+
+
+        binding.lockerLoginTv.setOnClickListener {
+            startActivity(Intent(activity, LoginActivity::class.java))
+        }
         return binding.root
 //        return inflater.inflate(R.layout.fragment_locker, container, false)
 
