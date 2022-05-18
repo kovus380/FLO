@@ -4,16 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.practice.Song
-import com.example.practice.SongDao
-import com.example.practice.User
-import com.example.practice.UserDao
+import com.example.practice.*
 
 
-@Database(entities = [Song::class, User::class], version = 1)
+@Database(entities = [Song::class, User::class, Like::class, Album::class], version = 1)
 abstract class SongDatabase: RoomDatabase() {
     abstract fun songDao(): SongDao
     abstract fun userDao() : UserDao
+    abstract fun albumDao() : AlbumDao
 
     companion object {
         private var instance: SongDatabase? = null
