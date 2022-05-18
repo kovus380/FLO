@@ -1,6 +1,5 @@
 package com.example.practice
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -25,8 +24,9 @@ class SingUpActivity : AppCompatActivity() {
     private fun getUser() : User {
         val email: String = binding.signUpIdEt.text.toString() + "@" + binding.signUpDirectInputEt.text.toString()
         val pwd: String = binding.signUpPasswordEt.text.toString()
+        val name: String = binding.signUpNameEt.text.toString()
 
-        return User(email, pwd)
+        return User(email, pwd, name)
     }
 
     private fun signUp() {
