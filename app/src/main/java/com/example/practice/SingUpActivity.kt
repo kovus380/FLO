@@ -12,7 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
-class SingUpActivity : AppCompatActivity() {
+class SingUpActivity : AppCompatActivity(), SignUpView {
     lateinit var binding: ActivitySignupBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,26 +63,19 @@ class SingUpActivity : AppCompatActivity() {
             return
         }
 
-        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.signUp(getUser()).enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                Log.d("SIGNUP/SUCCESS", response.toString())
-                val resp: AuthResponse = response.body()!!
-                when (resp.code) {
-                    1000 -> finish()
-                    2016, 2018 -> {
-                        binding.signUpEmailErrorTv.visibility = View.VISIBLE
-                        binding.signUpEmailErrorTv.text = resp.message
-                    }
-                }
-            }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                Log.d("SIGNUP/FAILURE", t.message.toString())
-            }
 
-        })
+        val authService = AuthService()
+        authService.setSignUpView(this)
 
-        Log.d("SIGNUP", "HELLO")
+        authService.signUp(getUser())
+    }
+
+    override fun onSignUpSuccess() {
+        finish()
+    }
+
+    override fun onSignUpFailure() {
+        TODO("Not yet implemented")
     }
 }
