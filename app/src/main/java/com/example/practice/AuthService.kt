@@ -56,6 +56,7 @@ class AuthService {
             }
 
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                loginView.onLoginFailure()
                 Log.d("LOGIN/FAILURE", t.message.toString())
             }
 

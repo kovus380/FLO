@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
         authService.setLoginView(this)
 
         authService.login(User(email, pwd, ""))
-        Toast.makeText(this, "회원 정보가 존재하지 않습니다", Toast.LENGTH_SHORT).show()
+
 
 
     }
@@ -86,10 +86,13 @@ class LoginActivity : AppCompatActivity(), LoginView {
                 startMainActivity()
             }
 
+
         }
+        Toast.makeText(this, "로그인에 성공했습니다", Toast.LENGTH_SHORT).show()
     }
 
     override fun onLoginFailure() {
-        TODO("Not yet implemented")
+        Log.d("LOGIN/FAIL/MESSAGE", "----------")
+        Toast.makeText(this, "회원 정보가 존재하지 않습니다", Toast.LENGTH_SHORT).show()
     }
 }
