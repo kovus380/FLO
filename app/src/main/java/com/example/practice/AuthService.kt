@@ -57,12 +57,15 @@ class AuthService {
                 val resp: AuthResponse = response.body()!!
                 when (val code = resp.code) {
                     1000 -> loginView.onLoginSuccess(code, resp.result!!)
-                    else -> Log.d("LOGIN/FAIL", code.toString())
+                    else -> {
+                        Log.d("LOGIN/FAIL", code.toString())
+                        loginView.onLoginFailure(code, resp.message)
+                    }
                 }
             }
 
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                loginView.onLoginFailure()
+
                 Log.d("LOGIN/FAILURE", t.message.toString())
             }
 

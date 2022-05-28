@@ -50,6 +50,20 @@
         app:layout_constraintTop_toBottomOf="@+id/login_id_et"/>
 
     <TextView
+        android:id="@+id/login_email_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/form_error"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_id_underscore_view" />
+
+
+    <TextView
         android:id="@+id/login_at_sign_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,7 +124,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_id_underscore_view" />
+        app:layout_constraintTop_toBottomOf="@+id/login_email_error_tv" />
 
     <View
         android:id="@+id/login_password_underscore_view"
@@ -121,6 +135,21 @@
         app:layout_constraintEnd_toEndOf="@+id/login_password_et"
         app:layout_constraintStart_toStartOf="@+id/login_password_et"
         app:layout_constraintTop_toBottomOf="@+id/login_password_et"/>
+
+
+    <TextView
+        android:id="@+id/login_password_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/form_error"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_password_underscore_view" />
+
 
     <ImageView
         android:id="@+id/login_hide_password_iv"
@@ -146,7 +175,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_password_underscore_view" />
+        app:layout_constraintTop_toBottomOf="@+id/login_password_error_tv" />
 
     <TextView
         android:id="@+id/login_find_id_tv"

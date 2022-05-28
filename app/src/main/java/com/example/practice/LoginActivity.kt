@@ -2,7 +2,9 @@ package com.example.practice
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.flo.SongDatabase
@@ -85,14 +87,27 @@ class LoginActivity : AppCompatActivity(), LoginView {
                 saveJwt2(result.jwt)
                 startMainActivity()
             }
-
-
         }
         Toast.makeText(this, "로그인에 성공했습니다", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onLoginFailure() {
-        Log.d("LOGIN/FAIL/MESSAGE", "----------")
-        Toast.makeText(this, "회원 정보가 존재하지 않습니다", Toast.LENGTH_SHORT).show()
+    override fun onLoginFailure(code: Int, message: String) {
+        Log.d("LOGIN/FAIL/MESSAGE", message)
+//        Toast.makeText(this, "회원 정보가 존재하지 않습니다", Toast.LENGTH_SHORT).show()
+
+        binding.loginEmailErrorTv.visibility = View.GONE
+        binding.loginPasswordErrorTv.visibility = View.GONE
+        when (code) {
+            2019 -> {
+                binding.loginEmailErrorTv.visibility = View.VISIBLE
+                binding.loginEmailErrorTv.text = message
+            }
+            3014 -> {
+                binding.loginPasswordErrorTv.visibility = View.VISIBLE
+                binding.loginPasswordErrorTv.text = message
+            }
+            else -> Toast.makeText(this, "로그인에 실패하였습니다", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
