@@ -28,7 +28,13 @@ class AuthService {
                 val resp: AuthResponse = response.body()!!
                 when (val code = resp.code) {
                     1000 -> signUpView.onSignUpSuccess()
-                    else -> Log.d("SIGNUP/FAIL", code.toString())
+//                    else -> Log.d("SIGNUP/FAIL", code.toString())
+                    else -> {
+//                        signUpView.onSignUpFailure(resp)
+                        signUpView.onSignUpFailure(resp.code, resp.message)
+
+                        Log.d("SIGNUP/FAIL", code.toString())
+                    }
                 }
             }
 

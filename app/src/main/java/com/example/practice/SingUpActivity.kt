@@ -58,11 +58,21 @@ class SingUpActivity : AppCompatActivity(), SignUpView {
             return
         }
 
+        if (binding.signUpPasswordEt.text.toString().isEmpty()) {
+            Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (binding.signUpPasswordCheckEt.text.toString().isEmpty()) {
+            Toast.makeText(this, "확인 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
         if (binding.signUpPasswordEt.text.toString() != binding.signUpPasswordCheckEt.text.toString()) {
             Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
             return
         }
-
 
 
         val authService = AuthService()
@@ -75,7 +85,26 @@ class SingUpActivity : AppCompatActivity(), SignUpView {
         finish()
     }
 
-    override fun onSignUpFailure() {
-        TODO("Not yet implemented")
+    //    override fun onSignUpFailure() {
+    override fun onSignUpFailure(code: Int, message: String) {
+//    override fun onSignUpFailure(resp: AuthResponse) {
+        Log.d("D/SIGNUP/FAILURE", code.toString())
+        Log.d("D/SIGNUP/FAILURE", message)
+        binding.signUpNameErrorTv.visibility = View.GONE
+        binding.signUpEmailErrorTv.visibility = View.GONE
+
+        when (code) {
+            2016, 2017 -> {
+                binding.signUpEmailErrorTv.visibility = View.VISIBLE
+                binding.signUpEmailErrorTv.text = message
+            }
+            2018 -> {
+                binding.signUpNameErrorTv.visibility = View.VISIBLE
+                binding.signUpNameErrorTv.text = message
+            }
+            2000 -> {
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
